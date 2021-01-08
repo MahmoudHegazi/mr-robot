@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add New API</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron">
+{% if robot %} Add API Deatlis For your ROBOT {% endf %}
+</div>
+<!-- Add Todo Model start -->
+<div class="container">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Add API <i class="fa fa-plus"></i>
+  </button>
+<form id="ntodo"><input id="name_value" name='todoname_value' value="">
+  <input id="lid_input" name='lid' value="{{text.name}}" style="display:none;">
+  <input type="submit" value="add"></form>
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Please Mange Your New API</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+<form action="/add_todo" method='POST'>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="form-group">
+          <label for="todoname">Todo Name: </label>
+          <input class="form-control" type="text" name="todoname"><br /><br />
+          <label for="tododate">Todo Date: </label>
+          <input class="form-control" type="date" name="tododate"><br /><br />
+          <label for="todolist">Todo List: </label>
+          <select class="form-control" name="todolist">
+               {% if lists %}
+                 {% for list in lists %}
+                 <option value="{{list.id}}" class="todo_desc">{{list.name}}</option>
+                 {% endfor %}
+               {% endif %}
+            </select>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Add <i class="fa fa-plus"></i></button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+</form>
+      </div>
+    </div>
+  </div>
+
+</div>
+<br />
+<!-- add Todo Model end -->
